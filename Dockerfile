@@ -1,5 +1,4 @@
-dockerfile
-# Use Node 18 as base
+# Use Node.js as base
 FROM node:18
 
 # Set working directory
@@ -12,9 +11,11 @@ RUN npm install --production
 # Copy app source
 COPY . .
 
-# Expose port (Railway expects this)
+# Build Vite project
+RUN npm run build
+
+# Expose port 3000 for Railway
 EXPOSE 3000
 
-# Start the app
+# Start Vite preview in production mode
 CMD ["npm", "start"]
-```
